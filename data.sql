@@ -28,7 +28,6 @@ VALUES ('Ditto' ,'2022-05-14', 4, true, 22);
 -- Update the wrongly entered weight_kg values that were wrongly entered as positive in the queries file.
 
 -- Task 3
--- Data 1
 INSERT INTO owners (full_name, age) VALUES
    ('Sam Smith', 34),
    ('Jennifer Orwell', 19),
@@ -37,12 +36,10 @@ INSERT INTO owners (full_name, age) VALUES
    ('Dean Winchester', 14),
    ('Jodie Whittaker', 38);
 
--- Data 2.
 INSERT INTO species (name) VALUES
    ('Pokemon'),
    ('Digimon');
 
--- Data 3
 UPDATE animals
 SET species_id=2
 WHERE name LIKE '%mon';
@@ -51,7 +48,6 @@ UPDATE animals
 SET species_id=1
 WHERE species_id WHERE name NOT LIKE '%mon';
 
--- Data 4
 UPDATE animals
 SET owner_id=1
 WHERE name='Agumon';
