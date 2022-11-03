@@ -7,3 +7,80 @@ SELECT name, escape_attempts from animals WHERE weight_kg > 10.5;
 SELECT * FROM animals WHERE neutered=true;
 SELECT * FROM animals WHERE name<>'Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
+
+-- Task 2 queries.
+
+-- Update weight_kg columns for the values wrongly entered as positive.
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name = 'Charmander';
+
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name = 'Plantmon';
+
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name = 'Squirtle';
+
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name = 'Angemon';
+
+
+
+-- No 1.
+BEGIN;
+UPDATE animals
+SET species = 'unspecified';
+SELECT * FROM animals;
+ROLLBACK;
+
+-- No 2.
+BEGIN;
+
+UPDATE animals 
+SET species = 'digimon'
+WHERE name like '%mon';
+
+UPDATE animals 
+SET species = 'pokemon'
+WHERE species = '';
+
+COMMIT;
+SELECT * FROM animals;
+
+--No 3.
+BEGIN;
+DELETE FROM animals;
+ROLLBACK;
+SELECT * FROM animals;
+
+--No 4.
+BEGIN;
+DELETE FROM animals WHERE date_of_birth > '2022-01-01';
+SELECT * FROM animals;
+SAVEPOINT checkpoint1;
+UPDATE animals SET weight_kg=weight_kg*-1;
+SELECT * FROM animals;
+ROLLBACK TO checkpoint1;
+UPDATE animals SET weight_kg=weight_kg*-1 where weight_kg<0;
+SELECT * FROM animals;
+COMMIT;
+
+--No 5
+SELECT COUNT(*) AS total FROM animals;
+
+SELECT COUNT(*) AS coolAnimals FROM animals
+WHERE escape_attempts=0;
+
+SELECT AVG(weight_kg) AS meanWeight FROM animals;
+
+SELECT neutered, MAX(escape_attempts) AS most_escape_attempts FROM animals GROUP BY neutered;
+
+SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM animals GROUP BY species;
+
+SELECT species, AVG(escape_attempts) AS mean_escape_attempts FROM animals WHERE date_of_birth >= '1990-01-01' AND date_of_birth <= '2000-12-31' GROUP BY species ;
+
+
+
