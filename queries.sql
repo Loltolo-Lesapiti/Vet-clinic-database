@@ -82,5 +82,11 @@ SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM 
 
 SELECT species, AVG(escape_attempts) AS mean_escape_attempts FROM animals WHERE date_of_birth >= '1990-01-01' AND date_of_birth <= '2000-12-31' GROUP BY species ;
 
-
-
+-- Task 3
+SELECT name FROM animals INNER JOIN owners ON animals.owner_id=owners.id WHERE owner.full_name='Melody Pond';
+SELECT * FROM animals LEFT JOIN species ON animal.species_id=species.id WHERE species.name='Pokemon';
+SELECT * FROM owners LEFT JOIN animals ON owners.id=animals.owner_id;
+SELECT species.name, COUNT(animals.species_id) FROM animals JOIN species ON species.id = animals.species_id GROUP BY species.name;
+SELECT * FROM animals a JOIN owners o ON a.owner_id=o.id JOIN species s ON a.species_id=s.id WHERE o.full_name='Jennifer Orwell' AND s.name='Digimon';
+SELECT * FROM animals a JOIN owners o ON a.owner_id=o.id JOIN species s ON a.species_id=s.id WHERE o.full_name='Jennifer Orwell' AND s.name='Digimon';
+SELECT full_name, COUNT(owner_id) FROM owners JOIN animals on owners.id = animals.owner_id GROUP BY full_name ORDER BY COUNT (owner_id) desc limit 1;
