@@ -9,6 +9,26 @@ SELECT * FROM animals WHERE name<>'Gabumon';
 SELECT * FROM animals WHERE weight_kg BETWEEN 10.4 AND 17.3;
 
 -- Task 2 queries.
+
+-- Update weight_kg columns for the values wrongly entered as positive.
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name = 'Charmander';
+
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name = 'Plantmon';
+
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name = 'Squirtle';
+
+UPDATE animals
+SET weight_kg = weight_kg * -1
+WHERE name = 'Angemon';
+
+
+
 -- No 1.
 BEGIN;
 UPDATE animals
@@ -60,7 +80,7 @@ SELECT neutered, MAX(escape_attempts) AS most_escape_attempts FROM animals GROUP
 
 SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight FROM animals GROUP BY species;
 
-SELECT species, AVG(escape_attempts) AS mean_escape_attempts FROM animals WHERE date_of_birth >= '1990-01-01' AND <='2000-12-31' GROUP BY species ;
+SELECT species, AVG(escape_attempts) AS mean_escape_attempts FROM animals WHERE date_of_birth >= '1990-01-01' AND date_of_birth <= '2000-12-31' GROUP BY species ;
 
 
 
