@@ -46,7 +46,7 @@ WHERE name LIKE '%mon';
 
 UPDATE animals
 SET species_id=1
-WHERE species_id WHERE name NOT LIKE '%mon';
+WHERE name NOT LIKE '%mon';
 
 UPDATE animals
 SET owner_id=1
