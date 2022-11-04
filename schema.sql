@@ -27,4 +27,22 @@ ALTER TABLE animals DROP COLUMN species;
 ALTER TABLE animals ADD COLUMN species_id INT REFERENCES species (id);
 ALTER TABLE animals ADD COLUMN owner_id INT REFERENCES owners (id);
 
+-- Task 4
+CREATE TABLE vets(
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(50), 
+    age INT,
+    date_of_graduation DATE,
+    PRIMARY KEY(id)
+    );
 
+CREATE TABLE specializations(
+    vets_id INT REFERENCES vets (id),
+    species_id INT REFERENCES species (id)
+    );
+
+CREATE TABLE visits(
+    vets_id INT REFERENCES vets(id),
+    animal_id INT REFERENCES animals(id),
+    visit_date DATE
+    );
