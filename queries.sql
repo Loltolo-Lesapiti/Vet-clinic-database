@@ -98,22 +98,24 @@ FROM animals an
 INNER JOIN visits vi
 ON an.id = vi.animal_id
 INNER JOIN vets ve
-ON ve.id = vi.vet_id
+ON ve.id = vi.vets_id
 WHERE ve.name = 'William Tatcher' 
 ORDER BY vi.visit_date DESC LIMIT 1;
 
-SELECT COUNT(DISTINCT(animals.name)) AS animals_seenby_Stephanie
-FROM visits vi
-INNER JOIN animals an
-ON an.id = vi.animals_id 
-INNER JOIN vets ve 
-ON vi.vets_id = ve.id 
-WHERE ve.name = 'Stephanie Mendez';
+SELECT ve.name,
+COUNT(an.name) AS animals_seenby_Stephanie 
+FROM animals an
+INNER JOIN visits vi
+ON an.id = vi.animal_id
+INNER JOIN vets ve
+ON ve.id = vi.vets_id
+WHERE ve.name = 'Stephanie Mendez'
+GROUP BY ve.name;
 
 SELECT DISTINCT ve.name, s.name 
 FROM vets ve
 LEFT JOIN specializations sp
-on ve.id = sp.vet_id 
+on ve.id = sp.vets_id 
 LEFT JOIN animals an 
 on sp.species_id = an.species_id 
 LEFT JOIN species s
@@ -125,7 +127,7 @@ FROM animals an
 INNER JOIN visits vi
 ON an.id = vi.animal_id
 INNER JOIN vets ve
-ON ve.id = vi.vet_id
+ON ve.id = vi.vets_id
 WHERE ve.name = 'Stephanie Mendez' 
 AND vi.visit_date BETWEEN '2020-04-01' AND '2020-08-30';
 
@@ -135,7 +137,7 @@ FROM animals an
 INNER JOIN visits vi
 ON an.id = vi.animal_id
 INNER JOIN vets ve
-ON ve.id = vi.vet_id
+ON ve.id = vi.vets_id
 GROUP BY an.name
 ORDER BY COUNT(vi.animal_id) DESC LIMIT 1;
 
@@ -144,7 +146,7 @@ FROM animals an
 INNER JOIN visits vi
 ON an.id = vi.animal_id
 INNER JOIN vets ve
-ON ve.id = vi.vet_id
+ON ve.id = vi.vets_id
 WHERE ve.name = 'Maisy Smith'
 ORDER BY visit_date ASC LIMIT 1;
 
@@ -155,18 +157,18 @@ FROM animals an
 INNER JOIN visits vi
 ON an.id = vi.animal_id
 INNER JOIN vets ve
-ON ve.id = vi.vet_id
+ON ve.id = vi.vets_id
 ORDER BY vi.visit_date DESC LIMIT 1;
 
 SELECT ve.name,
-COUNT(vi.vet_id) AS visits_counts_for_no_SPecVet
+COUNT(vi.vets_id) AS visits_counts_for_no_SPecVet
 FROM species s
 RIGHT JOIN specializations sp
 ON s.id = sp.species_id
 RIGHT JOIN vets ve
-ON ve.id = sp.vet_id
+ON ve.id = sp.vets_id
 RIGHT JOIN visits vi
-ON ve.id = vi.vet_id
+ON ve.id = vi.vets_id
 WHERE ve.name = 'Maisy Smith'
 GROUP BY ve.name;
 
@@ -178,7 +180,7 @@ ON an.id = vi.animal_id
 RIGHT JOIN species s
 ON s.id = an.species_id
 INNER JOIN vets ve
-ON ve.id = vi.vet_id
+ON ve.id = vi.vets_id
 WHERE ve.name = 'Maisy Smith' 
 GROUP BY ve.name, an.name
 ORDER BY an.name ASC LIMIT 1;
