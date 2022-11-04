@@ -75,11 +75,14 @@ INSERT INTO vets(name, age, date_of_graduation) VALUES
 ('Stephanie Mendez', 64, '1981-05-04'),
 ('Jack Harkness', 38, '2008-06-08');
 
-INSERT INTO specializations(vets_id, species_id) VALUES (
-((SELECT id from vets where name = 'William Tatcher'),(SELECT id from species where name = 'Pokemon')),
-((SELECT id from vets where name = 'Stephanie Mendez'),(SELECT id from species where name = 'Digimon')),
-((SELECT id from vets where name = 'Stephanie Mendez'),(SELECT id from species where name = 'Pokemon')),
-((SELECT id from vets where name = 'Jack Harkness'),(SELECT id from species where name = 'Digimon')));  
+INSERT INTO specializations (vets_id,species_id) 
+VALUES ((SELECT id FROM vets WHERE name = 'William Tatcher'),(SELECT id from species WHERE name = 'Pokemon'));
+INSERT INTO specializations (vets_id,species_id) 
+VALUES ((SELECT id FROM vets WHERE name = 'Stephanie Mendez'),(SELECT id from species WHERE name = 'Digimon'));
+INSERT INTO specializations (vets_id,species_id)
+VALUES ((SELECT id FROM vets WHERE name = 'Stephanie Mendez'),(SELECT id from species WHERE name = 'Pokemon'));
+INSERT INTO specializations (vets_id,species_id)
+VALUES ((SELECT id FROM vets WHERE name = 'Jack Harkness'),(SELECT id from species WHERE name = 'Digimon')); 
 
 INSERT INTO visits(animal_id, vets_id, visit_date)
 VALUES
@@ -93,7 +96,7 @@ VALUES
    ((SELECT id from animals where name = 'Plantmon'),(SELECT id from vets where name = 'Maisy Smith'),'2019-12-21'),
    ((SELECT id from animals where name = 'Plantmon'),(SELECT id from vets where name = 'William Tatcher'),'2020-08-10'),
    ((SELECT id from animals where name = 'Plantmon'),(SELECT id from vets where name = 'Maisy Smith'),'2021-04-07'),
-   ((SELECT id from animals where naame = 'Squirtle'),(SELECT id from vets where name = 'Stephanie Mendez'),'2019-09-29'),
+   ((SELECT id from animals where name = 'Squirtle'),(SELECT id from vets where name = 'Stephanie Mendez'),'2019-09-29'),
    ((SELECT id from animals where name = 'Angemon'),(SELECT id from vets where name = 'Jack Harkness'),'2020-10-03'),
    ((SELECT id from animals where name = 'Angemon'),(SELECT id from vets where name = 'Jack Harkness'),'2020-11-04'),
    ((SELECT id from animals where name = 'Boarmon'),(SELECT id from vets where name = 'Maisy Smith'),'2019-01-24'),
