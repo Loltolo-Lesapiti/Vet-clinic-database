@@ -187,9 +187,9 @@ ORDER BY an.name ASC LIMIT 1;
 
 -- Task 5.
 EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
-EXPLAIN ANALYZE SELECT * FROM visits where vet_id = 2;
+EXPLAIN ANALYZE SELECT * FROM visits where vets_id = 2;
 EXPLAIN ANALYZE SELECT * FROM owners where email = 'owner_18327@mail.com';
 -- Optimized queries
-EXPLAIN ANALYZE SELECT COUNT(vets_id) FROM visits where animal_id = 4;
+EXPLAIN ANALYZE SELECT COUNT(*) FROM visits where animal_id = 4;
 EXPLAIN ANALYZE SELECT animal_id,visit_date FROM visits where vets_id = 2;
 EXPLAIN ANALYZE SELECT full_name,age FROM owners where email = 'owner_18327@mail.com';
